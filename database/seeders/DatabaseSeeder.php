@@ -18,8 +18,21 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            "name" => "Test User",
+            "first_name" => "Test",
+            "last_name" => "User",
             "email" => "test@example.com",
         ]);
+
+        // Create tags first
+        $tags = \App\Models\Tags::factory(10)->create();
+
+        // Create posts and attach random tags to each
+        \App\Models\Posts::factory(100)
+            ->create()
+            ->each(function ($post) use ($tags) {
+                $post
+                    ->tags()
+                    ->attach($tags->random(rand(1, 5))->pluck("id")->toArray());
+            });
     }
 }

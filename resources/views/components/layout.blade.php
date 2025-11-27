@@ -19,15 +19,11 @@
 
     <body class="p-6">
         <x-link href="/" :active="request()->is('/')">Home</x-link>
-        <x-link href="/about" :active="request()->is('about')">About</x-link>
-        <x-link
-            href="/contact"
-            type="button"
-            :active="request()->is('contact')"
-        >
-            Contact
+        <x-link type="button" href="/about" :active="request()->is('about')">
+            About
         </x-link>
         <x-link href="/jobs" :active="request()->is('jobs')">Jobs</x-link>
+        <x-link href="/posts" :active="request()->is('posts')">Posts</x-link>
 
         {{ $slot }}
     </body>
